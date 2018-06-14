@@ -20,7 +20,6 @@ import ogbe.ozioma.com.recyclerviewcheckboxexample.Model;
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     private List<Model> items = new ArrayList<>();
-    SparseBooleanArray itemStateArray= new SparseBooleanArray();
     Adapter() {
     }
 
@@ -64,8 +63,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         }
 
         void bind(int position) {
-            // use the sparse boolean array to check
-            if (!itemStateArray.get(position, false)) {
+            // check the state of the model
+            if (!items.get(position).getChecked()) {
                 mCheckedTextView.setChecked(false);}
             else {
                 mCheckedTextView.setChecked(true);
@@ -75,13 +74,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         @Override
         public void onClick(View v) {
             int adapterPosition = getAdapterPosition();
-            if (!itemStateArray.get(adapterPosition, false)) {
+            if (!items.get(adapterPosition).getChecked()) {
                 mCheckedTextView.setChecked(true);
-                itemStateArray.put(adapterPosition, true);
+                items.get(adapterPosition).setChecked(true);
             }
             else  {
                 mCheckedTextView.setChecked(false);
-                itemStateArray.put(adapterPosition, false);
+                items.get(adapterPosition).setChecked(false);
             }
         }
 
