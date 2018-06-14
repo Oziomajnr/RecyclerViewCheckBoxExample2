@@ -35,7 +35,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.bind(position);
-        holder.setIsRecyclable(false);
     }
 
     @Override
