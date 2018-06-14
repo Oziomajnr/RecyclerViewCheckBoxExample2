@@ -2,6 +2,7 @@ package ogbe.ozioma.com.recyclerviewcheckboxexample;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,8 @@ import android.widget.CheckedTextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import ogbe.ozioma.com.recyclerviewcheckboxexample.Model;
+
 /**
  * Created by SQ-OGBE PC on 06/08/2017.
  */
@@ -17,8 +20,8 @@ import java.util.List;
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     private List<Model> items = new ArrayList<>();
-
-     Adapter() {
+    SparseBooleanArray itemStateArray= new SparseBooleanArray();
+    Adapter() {
     }
 
     @Override
@@ -44,7 +47,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         return items.size();
     }
 
-     void loadItems(List<Model> tournaments) {
+    void loadItems(List<Model> tournaments) {
         this.items = tournaments;
         notifyDataSetChanged();
     }
@@ -61,21 +64,26 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         }
 
         void bind(int position) {
-            mCheckedTextView.setText(String.valueOf(items.get(position).getPosition()));
+            // use the sparse boolean array to check
+            if (!itemStateArray.get(position, false)) {
+                mCheckedTextView.setChecked(false);}
+            else {
+                mCheckedTextView.setChecked(true);
+            }
         }
 
         @Override
         public void onClick(View v) {
-            // toggle the cheked view based on the checked field in the model
             int adapterPosition = getAdapterPosition();
-            if (mCheckedTextView.isChecked()) {
-                mCheckedTextView.setChecked(false);
-                //items.get(adapterPosition).setChecked(false);
-            }
-            else {
+            if (!itemStateArray.get(adapterPosition, false)) {
                 mCheckedTextView.setChecked(true);
-                //items.get(adapterPosition).setChecked(true);
+                itemStateArray.put(adapterPosition, true);
+            }
+            else  {
+                mCheckedTextView.setChecked(false);
+                itemStateArray.put(adapterPosition, false);
             }
         }
+
     }
 }
