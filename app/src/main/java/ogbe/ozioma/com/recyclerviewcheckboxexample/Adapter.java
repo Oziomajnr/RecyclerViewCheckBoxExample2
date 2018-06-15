@@ -57,7 +57,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
         ViewHolder(View itemView) {
             super(itemView);
-            mCheckedTextView = (CheckedTextView) itemView.findViewById(R.id.checked_text_view);
+            mCheckedTextView = itemView.findViewById(R.id.checked_text_view);
             itemView.setOnClickListener(this);
         }
 
