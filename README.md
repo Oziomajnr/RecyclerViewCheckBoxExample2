@@ -1,6 +1,6 @@
 # RecyclerViewCheckBoxExample2
 Supporting article for the medium tutorial on how to [handle check box states in android recycler view]
-(https://android.jlelse.eu/android-handling-checkbox-state-in-recycler-views-71b03f237022)
+(https://blog.oziomaogbe.com/2017/10/18/android-handling-checkbox-state-in-recycler-views.html)
 
 This repository has 3 branches for
 1. the default behaviour
